@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { media, albums } from '@/lib/gallery'
 import GalleryGrid from '@/components/Gallery/GalleryGrid'

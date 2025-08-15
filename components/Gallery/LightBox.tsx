@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import type { MediaItem } from '@/lib/gallery'
 import s from './LightBox.module.scss'
 
 export default function Lightbox({
-	items, // сюда уже приходят ТОЛЬКО изображения (без видео)
+	items,
 	start = 0,
 	onClose,
 }: {
@@ -14,16 +14,34 @@ export default function Lightbox({
 	start?: number
 	onClose: () => void
 }) {
-	// защита
+	// фильтруем сразу, но без раннего return
 	const safeItems = useMemo(() => items.filter(i => !!i.src), [items])
-	if (safeItems.length === 0) return null
 
-	const clamp = (n: number) => Math.max(0, Math.min(n, safeItems.length - 1))
-	const [i, setI] = useState(clamp(start))
+	const clamp = (n: number) =>
+		Math.max(0, Math.min(n, Math.max(safeItems.length - 1, 0)))
+	const [i, setI] = useState(() => clamp(start))
+
+	// если длина изменилась (сменили альбом) — корректируем индекс
+	useEffect(() => {
+		setI(prev => clamp(prev))
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [safeItems.length])
+
+	const prev = useCallback(
+		() =>
+			setI(
+				v =>
+					(v - 1 + Math.max(safeItems.length, 1)) %
+					Math.max(safeItems.length, 1)
+			),
+		[safeItems.length]
+	)
+	const next = useCallback(
+		() => setI(v => (v + 1) % Math.max(safeItems.length, 1)),
+		[safeItems.length]
+	)
+
 	const cur = safeItems[i]
-
-	const prev = () => setI(v => (v - 1 + safeItems.length) % safeItems.length)
-	const next = () => setI(v => (v + 1) % safeItems.length)
 
 	// клавиатура + запрет скролла
 	useEffect(() => {
@@ -45,7 +63,7 @@ export default function Lightbox({
 			window.removeEventListener('keydown', onKey)
 			document.body.style.overflow = original
 		}
-	}, [onClose])
+	}, [onClose, prev, next])
 
 	// свайп на мобилке
 	const touchX = useRef<number | null>(null)
@@ -55,11 +73,12 @@ export default function Lightbox({
 	const onTouchEnd = (e: React.TouchEvent) => {
 		if (touchX.current == null) return
 		const dx = e.changedTouches[0].clientX - touchX.current
-		if (Math.abs(dx) > 40) dx > 0 ? prev() : next()
+		if (Math.abs(dx) > 40) (dx > 0 ? prev : next)()
 		touchX.current = null
 	}
 
-	if (!cur?.src) return null
+	// РЕНДЕР-ГУАРДЫ — только теперь (после хуков)
+	if (safeItems.length === 0 || !cur?.src) return null
 
 	return (
 		<div
