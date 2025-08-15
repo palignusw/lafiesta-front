@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import type { MediaItem } from '@/lib/gallery'
-import s from './Lightbox.module.scss'
+import s from './LightBox.module.scss'
 
 export default function Lightbox({
 	items, // сюда уже приходят ТОЛЬКО изображения (без видео)
