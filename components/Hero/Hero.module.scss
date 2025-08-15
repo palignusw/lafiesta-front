@@ -1,0 +1,60 @@
+.hero {
+	position: relative;
+	padding: 48px 0 56px;
+	background: radial-gradient(
+			60% 50% at 50% 0%,
+			rgba(169, 134, 74, 0.12),
+			transparent 60%
+		),
+		var(--bg);
+}
+.row {
+	display: grid;
+	grid-template-columns: 1.1fr 0.9fr;
+	gap: 28px;
+	align-items: center;
+}
+.kicker {
+	color: var(--muted);
+	margin: 0 0 8px;
+}
+.title {
+	margin: 0 0 8px;
+	font-size: 36px;
+	line-height: 1.14;
+}
+.subtitle {
+	margin: 0 0 16px;
+	color: var(--muted);
+}
+.actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.frame {
+	background: #fff;
+	border: 1px solid var(--border);
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+.photo {
+	width: 100%;
+	height: 360px;
+	object-fit: cover;
+	display: block;
+}
+
+@media (max-width: 900px) {
+	.row {
+		grid-template-columns: 1fr;
+	}
+	.title {
+		font-size: 28px;
+	}
+	.photo {
+		height: 240px;
+	}
+}

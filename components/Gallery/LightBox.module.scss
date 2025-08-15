@@ -1,0 +1,78 @@
+.backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.92);
+	display: grid;
+	place-items: center;
+	z-index: 1200;
+}
+
+.inner {
+	position: relative;
+	width: min(96vw, 1200px);
+}
+
+.stage {
+	position: relative;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+.stage :global(img) {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.caption {
+	margin-top: 10px;
+	color: #ddd;
+	text-align: center;
+	font-size: 14px;
+}
+
+.close {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	width: 36px;
+	height: 36px;
+	border-radius: 999px;
+	border: 1px solid #b08a4f;
+	color: #fff;
+	background: #a9864a;
+	cursor: pointer;
+	font-size: 20px;
+	z-index: 2;
+}
+
+/* Стрелки внутри изображения — всегда по центру картинки */
+.nav {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 44px;
+	height: 44px;
+	border-radius: 999px;
+	border: 1px solid #b08a4f;
+	background: rgba(169, 134, 74, 0.95);
+	color: #fff;
+	cursor: pointer;
+	font-size: 26px;
+	line-height: 1;
+}
+.left {
+	left: 12px;
+}
+.right {
+	right: 12px;
+}
+@media (pointer: fine) and (min-width: 900px) {
+	.left {
+		left: 8px;
+	}
+	.right {
+		right: 8px;
+	}
+}

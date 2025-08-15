@@ -1,0 +1,81 @@
+.wrap {
+}
+
+.toolbar {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-bottom: 16px;
+}
+
+.chip {
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	background: #fff;
+	padding: 8px 12px;
+	cursor: pointer;
+	transition: 0.15s border-color ease, 0.15s background ease;
+}
+.chip:hover {
+	border-color: #a9864a;
+}
+.active {
+	background: #a9864a;
+	color: #fff;
+	border-color: #a9864a;
+}
+.icon {
+	margin-right: 6px;
+}
+
+/* Ровная grid-сетка (без Masonry/column-count) */
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 16px;
+}
+
+.card {
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	border-radius: 12px;
+	border: 1px solid var(--border);
+	overflow: hidden;
+	text-align: left;
+	cursor: zoom-in;
+}
+
+/* Единая высота превью: 16:9, медиаконтент обрезается по краям */
+.mediaBox {
+	position: relative;
+	padding-top: 56.25%; /* 16:9 */
+	background: #000;
+	overflow: hidden;
+}
+.mediaBox :global(img),
+.media {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.caption {
+	padding: 10px 12px;
+	font-size: 14px;
+	color: #444;
+}
+
+.mediaBox {
+	position: relative;
+	aspect-ratio: 3 / 2;
+	overflow: hidden;
+}
+.media {
+	object-fit: cover;
+	object-position: center;
+}

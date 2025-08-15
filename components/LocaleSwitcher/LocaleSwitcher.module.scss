@@ -1,0 +1,28 @@
+.switcher {
+	display: flex;
+	gap: 8px;
+}
+
+.btn {
+	padding: 6px 10px;
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	background: #fff;
+	color: var(--text, #2a2a2a);
+	cursor: pointer;
+	text-decoration: none;
+	font: inherit;
+	font-weight: 600;
+	transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+	&:hover {
+		border-color: var(--brand);
+		background: #faf7f1;
+	}
+}
+
+.active {
+	background: var(--brand);
+	color: #fff;
+	border-color: var(--brand);
+}

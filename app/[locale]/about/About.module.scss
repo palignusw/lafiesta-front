@@ -1,0 +1,132 @@
+.wrap {
+	padding: 28px 0 40px;
+}
+
+.intro {
+	margin-bottom: 14px;
+	opacity: 0.8;
+}
+
+.block {
+	margin-top: 22px;
+}
+
+.list {
+	margin: 0;
+	padding-left: 18px;
+	line-height: 1.7;
+}
+
+.cta {
+	margin-top: 26px;
+	padding: 18px;
+	background: #f7f7f7;
+	border-radius: 12px;
+}
+
+.ctaTitle {
+	margin: 0 0 6px;
+}
+
+.ctaText {
+	margin: 0 0 12px;
+	opacity: 0.8;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 16px;
+	border-radius: 10px;
+	background: #111;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 500;
+	transition: background 0.2s ease;
+
+	&:hover {
+		background: #333;
+	}
+}
+
+.wrap {
+	padding: 28px 0 40px;
+}
+
+.intro {
+	margin-bottom: 14px;
+	opacity: 0.8;
+}
+
+.block {
+	margin-top: 22px;
+}
+
+.list {
+	margin: 0;
+	padding-left: 18px;
+	line-height: 1.7;
+}
+
+.cta {
+	margin-top: 26px;
+	padding: 18px;
+	background: #f7f7f7;
+	border-radius: 12px;
+}
+
+.ctaTitle {
+	margin: 0 0 6px;
+}
+
+.ctaText {
+	margin: 0 0 12px;
+	opacity: 0.8;
+}
+
+/* кнопка как в форме */
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 12px 22px;
+	border-radius: 9999px;
+	background: var(--brand, #a9864a);
+	color: #fff;
+	font-weight: 600;
+	font: inherit;
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+	transition: background 0.2s ease;
+
+	&:hover {
+		background: color-mix(in srgb, var(--brand, #a9864a) 88%, #000);
+	}
+}
+
+/* shine */
+.btn::after {
+	content: '';
+	position: absolute;
+	top: -40%;
+	left: -30%;
+	width: 30%;
+	height: 200%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.5),
+		transparent
+	);
+	transform: rotate(20deg);
+	animation: shine 3.2s linear infinite;
+}
+
+@keyframes shine {
+	0% {
+		left: -30%;
+	}
+	100% {
+		left: 130%;
+	}
+}
